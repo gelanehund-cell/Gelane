@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Galanee Hundee | Portfolio</title> 
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+ 
+    <style>  
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        } 
+ 
+        body { 
+            line-height: 1.6; 
+            color: #333; 
+            scroll-behavior: smooth; 
+        } 
+        .navbar { 
+            background-color: transparent; 
+            padding: 1rem 5%; 
+            display: flex; 
+            justify-content: flex-end; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0; 
+            z-index: 1000; 
+            transition: background-color 0.4s ease, padding 0.4s ease; 
+        } 
+ 
+        .navbar.scrolled { 
+            background-color: #1b5e20;  /* Deep Green */
+            padding: 0.7rem 5%; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2); 
+        } 
+ 
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            margin-left: 2rem; 
+            font-weight: 500; 
+            transition: 0.3s; 
+        } 
+ 
+        .nav-links a:hover { 
+            color: #a5d6a7; /* Light Green */
+        } 
+        .hero { 
+            height: 100vh; 
+            background: linear-gradient(rgba(27, 94, 32, 0.8), rgba(46, 125, 50, 0.7)),  
+                        url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');  
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: white; 
+            padding-top: 60px; 
+        } 
+ 
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 10px; } 
+        .hero-content h1 span { color: white; } 
+          
+        .typing-container { 
+            font-size: 2rem; 
+            min-height: 1.2em; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        } 
+ 
+        #type-out { 
+            border-right: 3px solid #a5d6a7; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            display: inline-block; 
+        } 
+        .btn-contact, .btn-read, .btn-send { 
+            display: inline-block; 
+            background-color: #2e7d32; /* Primary Green */
+            color: white; 
+            text-decoration: none; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+            border: none; 
+        } 
+        .btn-contact { margin-top: 30px; padding: 12px 25px; } 
+        .btn-contact:hover, .btn-read:hover, .btn-send:hover { 
+            background-color: #1b5e20; 
+            transform: translateY(-3px); 
+            box-shadow: 0 5px 15px rgba(27, 94, 32, 0.4); 
+        } 
+        .about { background-color: #f1f8e9; padding: 80px 10%; text-align: center; } 
+        .about h2 { margin-bottom: 40px; font-size: 2rem; color: #1b5e20; } 
+        .about-container { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center; } 
+        .about-img { width: 300px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 4px solid #fff; } 
+        .about-text { flex: 1; text-align: left; min-width: 300px; } 
+        .about-text a { color: #2e7d32; font-weight: bold; }
+
+        .services { background-color: #dcedc8; padding: 80px 10%; } 
+        .services h2 { text-align: center; margin-bottom: 40px; color: #1b5e20; } 
+        .service-list { display: flex; flex-direction: column; gap: 30px; } 
+        .service-item { display: flex; align-items: flex-start; gap: 20px; } 
+        .service-item i { font-size: 2rem; color: #1b5e20; margin-top: 5px; } 
+        .service-item h3 i { margin-right: 10px; font-size: 1.3rem; }   
+        .skills { background-color: #1b3022; padding: 80px 10%; color: white; display: flex; gap: 60px; flex-wrap: wrap; } 
+        .skills-content { flex: 1; min-width: 300px; } 
+        .btn-read { padding: 10px 25px; margin-top: 20px; } 
+        .skills-bars { flex: 1; min-width: 300px; } 
+        .bar-container { margin-bottom: 25px; } 
+        .info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; } 
+        .line { height: 8px; background: rgba(255,255,255,0.3); border-radius: 10px; position: relative; } 
+        .line::before { content: ""; position: absolute; height: 100%; background: #a5d6a7; border-radius: 10px; } 
+        .line.html::before { width: 90%; } 
+        .line.css::before { width: 85%; } 
+        .line.js::before { width: 80%; } 
+        .contact { background-color: #2e7d32; padding: 80px 10%; display: flex; color: white; gap: 50px; flex-wrap: wrap; } 
+        .contact-form { flex: 1.5; display: flex; flex-direction: column; gap: 15px; min-width: 300px; } 
+        .contact-form input, .contact-form textarea { padding: 15px; border: none; border-radius: 4px; font-size: 1rem; } 
+        .contact-form textarea { height: 150px; resize: vertical; } 
+        .btn-send { padding: 15px; width: 180px; } 
+        .contact-info { flex: 1; min-width: 300px; } 
+        .info-item { display: flex; align-items: center; gap: 15px; margin: 20px 0; } 
+        .social-icons { margin-top: 30px; } 
+        .social-icons i { font-size: 1.5rem; margin-right: 20px; cursor: pointer; transition: 0.3s; } 
+        .social-icons i:hover { color: #a5d6a7; } 
+        footer { 
+            background-color: #0d1b0e; 
+            color: #888; 
+            padding: 30px 10%; 
+            text-align: center; 
+            border-top: 1px solid #1b5e20; 
+        } 
+        footer span { color: #a5d6a7; font-weight: bold; } 
+ 
+        @media (max-width: 768px) { 
+            .hero-content h1 { font-size: 2.5rem; } 
+            .navbar { justify-content: center; } 
+            .nav-links a { margin: 0 10px; } 
+        } 
+    </style> 
+</head> 
+<body> 
+ 
+    <nav class="navbar" id="mainNav"> 
+        <div class="nav-links"> 
+            <a href="#home">Home</a> 
+            <a href="#about">About</a> 
+            <a href="#service">Service</a> 
+            <a href="#skill">Skill</a> 
+            <a href="#contact">Contact</a> 
+        </div> 
+    </nav> 
+ 
+    <section id="home" class="hero"> 
+        <div class="hero-content"> 
+            <h1>Hello, I am <span>Galanee Hundee</span></h1> 
+            <div class="typing-container"> 
+                <div id="type-out"></div> 
+            </div> 
+            <a href="#contact" class="btn-contact">contact <i class="fa-solid fa-paper-plane"></i></a> 
+        </div> 
+    </section> 
+ 
+    <section id="about" class="about"> 
+        <h2>About Me</h2> 
+        <div class="about-container"> 
+            <img src="galane.jpg" alt="Galanee Hundee" class="about-img"> 
+            <div class="about-text"> 
+                <p>Hi, my name is <b>Galanee Hundee</b>. I am a Grade 11 Natural Science student. I am a passionate web developer and designer who loves building creative digital solutions.</p>
+            </div> 
+        </div> 
+    </section> 
+ 
+    <section id="service" class="services"> 
+        <h2>My Services</h2> 
+        <div class="service-list"> 
+            <div class="service-item"> 
+                <i class="fa-solid fa-code"></i> 
+                <div> 
+                    <h3>Web Development</h3> 
+                    <p>I build professional websites using modern technologies like HTML, CSS, and JavaScript with high precision.</p> 
+                </div> 
+            </div> 
+            <div class="service-item"> 
+                <i class="fa-solid fa-palette"></i> 
+                <div> 
+                    <h3>Web Design</h3> 
+                    <p>I create visually appealing and user-friendly web layouts that bring ideas to life.</p> 
+                </div> 
+            </div> 
+            <div class="service-item"> 
+                <i class="fa-solid fa-graduation-cap"></i> 
+                <div> 
+                    <h3>Tech Learning</h3> 
+                    <p>As a Natural Science student, I apply logical thinking to solve complex coding problems.</p> 
+                </div> 
+            </div> 
+        </div> 
+    </section> 
+ 
+    <section id="skill" class="skills"> 
+        <div class="skills-content"> 
+            <h2>My Creative Skills</h2> 
+            <p id="skill-desc">I am a skilled web developer and designer. I balance my academic life in Grade 11 Natural Science with my passion for creating websites.</p>
+            <button class="btn-read" onclick="toggleReadMore()">Read More</button>
+        </div> 
+        <div class="skills-bars"> 
+            <div class="bar-container"> 
+                <div class="info"><span>Web Design</span><span>90%</span></div> 
+                <div class="line html"></div> 
+            </div> 
+            <div class="bar-container"> 
+                <div class="info"><span>Development</span><span>85%</span></div> 
+                <div class="line css"></div> 
+            </div> 
+            <div class="bar-container"> 
+                <div class="info"><span>Problem Solving</span><span>80%</span></div> 
+                <div class="line js"></div> 
+            </div> 
+        </div> 
+    </section> 
+ 
+    <section id="contact" class="contact"> 
+        <div class="contact-form"> 
+            <input type="text" placeholder="your name"> 
+            <input type="email" placeholder="your email address"> 
+            <input type="text" placeholder="your subject"> 
+            <textarea placeholder="message"></textarea> 
+           <a href="#home"> <button class="btn-send">send message</button></a> 
+        </div> 
+        <div class="contact-info"> 
+            <p>Feel free to contact me anytime. I'd be happy to work with you.</p> 
+            <div class="info-item"><i class="fa-solid fa-user"></i> Galanee Hundee</div> 
+            <div class="info-item"><i class="fa-solid fa-phone"></i> +251-9XXXXXXXX</div> 
+            <div class="info-item"><i class="fa-solid fa-envelope"></i> galaneehundee@gmail.com</div> 
+            <div class="social-icons"> 
+                <i class="fa-brands fa-facebook"></i> 
+                <i class="fa-brands fa-twitter"></i> 
+                <i class="fa-brands fa-instagram"></i> 
+            </div> 
+        </div> 
+    </section> 
+ 
+    <footer> 
+        <p>&copy; 2026 <span>Galanee Hundee</span>. </p>
+    </footer> 
+ 
+    <script> 
+        const textElement = document.getElementById('type-out'); 
+        const professionText = "Web Designer & Developer"; 
+        let charIndex = 0; 
+        let isDeleting = false; 
+        let typeSpeed = 150; 
+ 
+        function typeLoop() { 
+            const currentText = professionText.substring(0, charIndex); 
+            textElement.innerHTML = currentText; 
+ 
+            if (!isDeleting && charIndex < professionText.length) { 
+                charIndex++; 
+                typeSpeed = 150; 
+            } else if (isDeleting && charIndex > 0) { 
+                charIndex--; 
+                typeSpeed = 75; 
+            } else { 
+                isDeleting = !isDeleting; 
+                typeSpeed = isDeleting ? 1000 : 500; 
+            } 
+            setTimeout(typeLoop, typeSpeed); 
+        } 
+ 
+        window.onscroll = function() { 
+            const nav = document.getElementById('mainNav'); 
+            if (window.scrollY > 50) { 
+                nav.classList.add('scrolled'); 
+            } else { 
+                nav.classList.remove('scrolled'); 
+            } 
+        }; 
+ 
+        function toggleReadMore() { 
+            const skillDesc = document.getElementById('skill-desc'); 
+            const btn = document.querySelector('.btn-read'); 
+            
+            const shortText = "I am a skilled web developer and designer. I balance my academic life in Grade 11 Natural Science with my passion for creating websites.";
+            const longText = "I am Galanee Hundee, a professional web designer and developer. I have a deep understanding of creating user-centered designs. As a Grade 11 Natural Science student, I apply logical approaches to development. My goal is to build digital experiences that are both beautiful and functional.";
+
+            if (btn.innerText === "Read More") { 
+                skillDesc.innerText = longText; 
+                btn.innerText = "Read Less"; 
+            } else { 
+                skillDesc.innerText = shortText; 
+                btn.innerText = "Read More"; 
+            } 
+        } 
+        
+        document.addEventListener('DOMContentLoaded', typeLoop); 
+
+    </script> 
+</body> 
+</html>
